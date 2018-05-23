@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Proyecto final Sudoku">
+    <meta name="author" content="Sharon Castañeda">
+    <!--imagenes-->
+    <!--
+    <link rel="shortcut icon" href="public/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="public/img/favicon.ico" type="image/x-icon">
+    -->
+    <link href="https://fonts.googleapis.com/css?family=Titan+One" rel="stylesheet">
+    <title>SUDOKU</title>
+    <link href="public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="public/vendor/sweetalert/sweetalert.css" rel="stylesheet">
+
+    <style>
+        body {
+            padding-top: 50px;
+        }
+
+        @media(min-width: 900px) {
+            body {
+                padding-top: 20px;
+                margin: 50px;
+                margin-left: 100px;
+            }
+        }
+
+        .titulo {
+            font-family: 'Titan One', cursive;
+        }
+
+        input.cell {
+            width: 40px;
+            height: 36px;
+            font-size: 20px;
+            text-align: center;
+            background: white;
+            border: 1px solid black;
+        }
+        input.cell2{
+            width: 40px;
+            height: 36px;
+            font-size: 20px;
+            text-align: center;
+            background: white;
+            border: 1px solid black;
+            border-right: 5px solid black;
+        }
+        .cell3{
+            border-top: 5px solid black;
+        }
+        #sudoku-table table {
+            text-align: center;
+            margin: 0 auto;
+            border: 5px solid #000;
+        }
+        .mensaje{
+            font-family: 'Titan One', cursive;
+            text-align: center;
+            color: brown;   
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <!--titulo-->
+    <div class="container-fluid">
+        <h1 class="titulo"> SUDOKU
+            <small>Proyecto Programacion</small>
+        </h1>
+    </div>
+    <br>
+
+    <div class="main row ">
+        <div class="container col-md-7 ">
+            <div id="sudoku-table">
+                <table cellspacing=0 cellpadding=0 border="0">
+                    <tbody>
+                        <tr >
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i0" name="i0" size="5" maxlength="5" class="cell" onblur="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i1" name="i1" value="8" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i2" name="i2" size="5" maxlength="5" class="cell2" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i3" name="i3" value="5" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i4" value="7" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i5" value="6" readonly size="5" maxlength="5" class="cell2" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i6" value="2" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i7" size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i8" size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="fila2">
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i9" size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i10" size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i11" size="5" 
+                                    maxlength="5" class="cell2" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i12" value="4" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i13" size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i14" value="2" 
+                                    readonly size="5" maxlength="5" class="cell2" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i15" size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i16" size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i17" size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="fila3" >
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i18" size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i19" size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i20" 
+                                    size="5" maxlength="5" class="cell2" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i21" size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i22" value="3" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i23" 
+                                    value="9" readonly size="5" maxlength="5" class="cell2" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i24" value="5" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i25" value="4" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i26" value="8" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="fila4" class="cell3">
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i27" value="6" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i28" value="3" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i29" 
+                                    size="5" maxlength="5" class="cell2" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i30" value="9" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i31" size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i32" 
+                                    size="5" maxlength="5" class="cell2" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i33" value="8" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i34" value="5" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i35" value="2" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="fila5">
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i36" size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i37" value="9" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i38" 
+                                    size="5" maxlength="5" class="cell2" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i39" value="2" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i40" size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i41" 
+                                    size="5" maxlength="5" class="cell2" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i42" value="3" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i43" value="7" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i44" size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="fila6">
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i45" value="8" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i46" size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i47" 
+                                    size="5" maxlength="5" class="cell2" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i48" size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i49" value="5" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i50" 
+                                    size="5" maxlength="5" class="cell2" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i51" value="6" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i52" value="9" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i53" value="4" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="fila7" class="cell3">
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i54" value="2" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i55" value="5" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i56" 
+                                    value="7" readonly size="5" maxlength="5" class="cell2" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i57" value="6" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i58" size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i59" value="3" 
+                                    readonly size="5" maxlength="5" class="cell2" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i60" value="4" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i61" value="8" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i62" value="9" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="fila8">
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i63" value="3" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i64" size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i65" 
+                                    value="8" readonly size="5" maxlength="5" class="cell2" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i66" value="7" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i67" size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i68" size="5" 
+                                    maxlength="5" class="cell2" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i69" size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i70" value="2" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i71" value="5" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="fila9">
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i72" size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i73" value="4" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i74" size="5" 
+                                    maxlength="5" class="cell2" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i75" size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i76" size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i77" size="5" 
+                                    maxlength="5" class="cell2" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i78" size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i79" size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                            <td>
+                                <div class="cell">
+                                    <input valing="middle" type="text" id="i80" value="6" readonly size="5" maxlength="5" class="cell" onkeyup="fontsize(this,this.value)">
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+        <div class="container col-md-5 ">
+            <br>
+            <button type="button" id="b_verificar" class=" btn btn-outline-dark btn-lg btn-block ">Verifica mis movimientos</button>
+            <br>
+            <button type="button" id="b_borrar" class=" btn btn-outline-dark btn-lg btn-block">Borrar todo</button>
+            <br>
+            <button type="button" id="b_terminar" class=" btn btn-outline-dark btn-lg btn-block">Terminar</button>
+            <br>
+            <br>
+
+        </div>
+        <div class="mensaje" style="margin-top: 10px" id="text_resp"> </div>
+        
+
+        <footer class="footer">
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="container">
+                <span class="text-muted"> - Desarrollado por Sharon Castañeda
+
+                </span>
+            </div>
+        </footer>
+
+        <script src="public/vendor/sweetalert/sweetalert.min.js"></script>
+        <script src="public/vendor/jquery/jquery.min.js"></script>
+        <script src="public/vendor/popper/popper.min.js"></script>
+        <script src="public/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/JavaScript" src="public/script.js"></script>
+</body>
+
+</html>
